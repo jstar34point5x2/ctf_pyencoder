@@ -1,3 +1,4 @@
+
 import codecs, base64, hashlib
 
 
@@ -85,15 +86,25 @@ def report_space(label, value):
     new_line = label.rjust(end_lab) + ' ' * pad + value.ljust(0)
     print('\n' + new_line)
 
+def read_file(filepath):
+    file = open(filepath,"r")
+    txt_cont=file.read()
+    file.close()
+    return txt_cont
 
+# %% Report (from user or file)
 
-# %% Report
+user = True
 
-string = input('\n' + 'Enter text here:'.rjust(20) + '  ')
+if user == True:
+    string = input('\nEnter text here:'.rjust(20) + '  ')
+else:
+    filepath = input ('\nEnter file path'.rjust(20) + '  ')
+    string = read_file(filepath)
 
-report = 1
+report = True
 
-if report == 1:
+if report == True:
 
     report_space('encoded rot13:', enc_rot13(string))
     report_space('encoded base16:', enc_base16(string))
